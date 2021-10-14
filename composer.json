@@ -4,5 +4,17 @@
     "type": "project",
     "license": "MIT",
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Winstor\\WsOSS\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Winstor\\WsOSS\\WsOssServiceProvider"
+            ]
+        }
+    }
 }
