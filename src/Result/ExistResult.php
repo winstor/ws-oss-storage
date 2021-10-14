@@ -1,6 +1,6 @@
 <?php
 
-namespace Winstor\WsOss\Result;
+namespace Winstor\WsOSS\Result;
 
 /**
  * Class ExistResult checks if bucket or object exists, according to the http status in response headers.

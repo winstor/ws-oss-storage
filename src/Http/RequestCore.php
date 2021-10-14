@@ -1,5 +1,5 @@
 <?php
-namespace Winstor\WsOss\Http;
+namespace Winstor\WsOSS\Http;
 
 
 /**

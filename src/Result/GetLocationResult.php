@@ -1,7 +1,7 @@
 <?php
-namespace Winstor\WsOss\Result;
+namespace Winstor\WsOSS\Result;
 
-use Winstor\WsOss\Core\WsException;
+use Winstor\WsOSS\Core\WsException;
 
 /**
  * Class GetLocationResult getBucketLocation interface returns the result class, encapsulated

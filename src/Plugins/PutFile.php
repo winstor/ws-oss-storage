@@ -6,7 +6,7 @@
  * Time: 15:09
  */
 
-namespace Winstor\WsOss\Plugins;
+namespace Winstor\WsOSS\Plugins;
 
 use League\Flysystem\Config;
 use League\Flysystem\Plugin\AbstractPlugin;

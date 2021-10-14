@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Winstor\WsOss\Core;
+namespace Winstor\WsOSS\Core;
 
 
 /**

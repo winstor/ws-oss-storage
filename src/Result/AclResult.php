@@ -1,8 +1,8 @@
 <?php
 
-namespace Winstor\WsOss\Result;
+namespace Winstor\WsOSS\Result;
 
-use Winstor\WsOss\Core\WsException;
+use Winstor\WsOSS\Core\WsException;
 
 /**
  * The type of the return value of getBucketAcl, it wraps the data parsed from xml.

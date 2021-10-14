@@ -1,21 +1,21 @@
 <?php
 
 
-namespace Winstor\WsOss;
+namespace Winstor\WsOSS;
 
 
-use Winstor\WsOss\Core\MimeTypes;
-use Winstor\WsOss\Core\OssUtil;
-use Winstor\WsOss\Core\WsException;
-use Winstor\WsOss\Http\RequestCore;
-use Winstor\WsOss\Http\RequestCore_Exception;
-use Winstor\WsOss\Http\ResponseCore;
-use Winstor\WsOss\Result\BodyResult;
-use Winstor\WsOss\Result\CallbackResult;
-use Winstor\WsOss\Result\ExistResult;
-use Winstor\WsOss\Result\HeaderResult;
-use Winstor\WsOss\Result\ListObjectsResult;
-use Winstor\WsOss\Result\PutSetDeleteResult;
+use Winstor\WsOSS\Core\MimeTypes;
+use Winstor\WsOSS\Core\OssUtil;
+use Winstor\WsOSS\Core\WsException;
+use Winstor\WsOSS\Http\RequestCore;
+use Winstor\WsOSS\Http\RequestCore_Exception;
+use Winstor\WsOSS\Http\ResponseCore;
+use Winstor\WsOSS\Result\BodyResult;
+use Winstor\WsOSS\Result\CallbackResult;
+use Winstor\WsOSS\Result\ExistResult;
+use Winstor\WsOSS\Result\HeaderResult;
+use Winstor\WsOSS\Result\ListObjectsResult;
+use Winstor\WsOSS\Result\PutSetDeleteResult;
 
 class WsClient
 {

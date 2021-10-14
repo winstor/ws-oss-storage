@@ -1,8 +1,8 @@
 <?php
 
-namespace Winstor\WsOss\Result;
+namespace Winstor\WsOSS\Result;
 
-use Winstor\WsOss\Core\WsException;
+use Winstor\WsOSS\Core\WsException;
 
 /**
  * Class AclResult  GetBucketAcl interface returns the result class, encapsulated

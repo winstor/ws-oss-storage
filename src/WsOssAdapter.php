@@ -6,10 +6,10 @@
  * Time: 9:08
  */
 
-namespace Winstor\WsOss;
+namespace Winstor\WsOSS;
 
 
-use Winstor\WsOss\Core\WsException;
+use Winstor\WsOSS\Core\WsException;
 use Illuminate\Support\Facades\Log;
 use League\Flysystem\Adapter\AbstractAdapter;
 use League\Flysystem\AdapterInterface;
@@ -222,6 +222,7 @@ class WsOssAdapter extends AbstractAdapter
     public function writeStream($path, $resource, Config $config)
     {
         $options = $this->getOptions($this->options, $config);
+
         $contents = stream_get_contents($resource);
 
         return $this->write($path, $contents, $config);
@@ -242,7 +243,6 @@ class WsOssAdapter extends AbstractAdapter
     {
         dump(__FUNCTION__ );
         dump(__METHOD__  );
-        exit;
         if (! $this->copy($path, $newpath)){
             return false;
         }
@@ -253,7 +253,6 @@ class WsOssAdapter extends AbstractAdapter
     {
         dump(__FUNCTION__ );
         dump(__METHOD__  );
-        exit;
         return true;
     }
 
@@ -281,7 +280,6 @@ class WsOssAdapter extends AbstractAdapter
     {
         dump(__FUNCTION__ );
         dump(__METHOD__  );
-        exit;
         return true;
     }
 
@@ -310,7 +308,6 @@ class WsOssAdapter extends AbstractAdapter
     {
         dump(__FUNCTION__ );
         dump(__METHOD__  );
-        exit;
     }
 
     public function getUrl($path)

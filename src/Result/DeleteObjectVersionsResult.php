@@ -1,6 +1,6 @@
 <?php
 
-namespace Winstor\WsOss\Result;
+namespace Winstor\WsOSS\Result;
 
 use OSS\Core\OssUtil;
 use OSS\Model\DeletedObjectInfo;

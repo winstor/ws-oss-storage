@@ -1,9 +1,9 @@
 <?php
 
-namespace Winstor\WsOss\Result;
+namespace Winstor\WsOSS\Result;
 
-use Winstor\WsOss\Core\WsException;
-use Winstor\WsOss\Http\ResponseCore;
+use Winstor\WsOSS\Core\WsException;
+use Winstor\WsOSS\Http\ResponseCore;
 
 
 /**

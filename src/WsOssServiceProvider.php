@@ -6,10 +6,10 @@
  * Time: 9:12
  */
 
-namespace Winstor\WsOss;
+namespace Winstor\WsOSS;
 
-use Winstor\WsOss\Plugins\PutFile;
-use Winstor\WsOss\Plugins\PutRemoteFile;
+use Winstor\WsOSS\Plugins\PutFile;
+use Winstor\WsOSS\Plugins\PutRemoteFile;
 use League\Flysystem\Filesystem;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;

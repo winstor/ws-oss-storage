@@ -1,6 +1,6 @@
 <?php
 
-namespace Winstor\WsOss\Http;
+namespace Winstor\WsOSS\Http;
 
 /**
  * Container for all response-related methods.

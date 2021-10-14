@@ -1,6 +1,6 @@
 <?php
 
-namespace Winstor\WsOss\Core;
+namespace Winstor\WsOSS\Core;
 
 
 class WsException extends \Exception
