@@ -105,6 +105,3 @@ Storage::putRemoteFile('target/path/to/file/jacob.jpg', 'http://example.com/jaco
 Storage::url('path/to/img.jpg') // get the file url
 ```
 
-## Documentation
-More development detail see [Aliyun OSS DOC](https://help.aliyun.com/document_detail/32099.html?spm=5176.doc31981.6.335.eqQ9dM)
-## License
