@@ -27,11 +27,6 @@ class WsOssServiceProvider extends ServiceProvider
     public function boot()
     {
         //发布配置文件
-//        if (function_exists('config_path')) {
-//            $this->publishes([
-//                __DIR__ . '/config/config.php' => config_path('wsoss.php'),
-//            ], 'config');
-//        }
         Storage::extend('wss', function ($app, $config) {
             $debug = !empty($config['debug']) && $config['debug'];
             if ($debug) Log::debug('wss config:', $config);

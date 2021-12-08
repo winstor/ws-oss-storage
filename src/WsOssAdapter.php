@@ -23,11 +23,11 @@ class WsOssAdapter extends AbstractAdapter
      * @var array
      */
     protected static $resultMap = [
-        'Body'           => 'raw_contents',
+        'Body' => 'raw_contents',
         'Content-Length' => 'size',
-        'ContentType'    => 'mimetype',
-        'Size'           => 'size',
-        'StorageClass'   => 'storage_class',
+        'ContentType' => 'mimetype',
+        'Size' => 'size',
+        'StorageClass' => 'storage_class',
     ];
 
     /**
@@ -46,15 +46,15 @@ class WsOssAdapter extends AbstractAdapter
     ];
 
     protected static $metaMap = [
-        'CacheControl'         => 'Cache-Control',
-        'Expires'              => 'Expires',
+        'CacheControl' => 'Cache-Control',
+        'Expires' => 'Expires',
         'ServerSideEncryption' => 'x-oss-server-side-encryption',
-        'Metadata'             => 'x-oss-metadata-directive',
-        'ACL'                  => 'x-oss-object-acl',
-        'ContentType'          => 'Content-Type',
-        'ContentDisposition'   => 'Content-Disposition',
-        'ContentLanguage'      => 'response-content-language',
-        'ContentEncoding'      => 'Content-Encoding',
+        'Metadata' => 'x-oss-metadata-directive',
+        'ACL' => 'x-oss-object-acl',
+        'ContentType' => 'Content-Type',
+        'ContentDisposition' => 'Content-Disposition',
+        'ContentLanguage' => 'response-content-language',
+        'ContentEncoding' => 'Content-Encoding',
     ];
     /**
      * @var WsClient
@@ -66,7 +66,7 @@ class WsOssAdapter extends AbstractAdapter
     protected $endPoint;
     //配置
     protected $options = [
-        'Multipart'   => 128
+        'Multipart' => 128
     ];
 
 
@@ -103,7 +103,7 @@ class WsOssAdapter extends AbstractAdapter
     public function read($path)
     {
         $result = $this->readObject($path);
-        $result['contents'] = (string) $result['raw_contents'];
+        $result['contents'] = (string)$result['raw_contents'];
         unset($result['raw_contents']);
         return $result;
     }
@@ -117,9 +117,9 @@ class WsOssAdapter extends AbstractAdapter
     {
         $result = $this->readObject($path);
         $result['stream'] = $result['raw_contents'];
-        rewind($result['stream']);
+        //rewind($result['stream']);
         // Ensure the EntityBody object destruction doesn't close the stream
-        $result['raw_contents']->detachStream();
+        //$result['raw_contents']->detachStream();
         unset($result['raw_contents']);
 
         return $result;
@@ -127,15 +127,7 @@ class WsOssAdapter extends AbstractAdapter
 
     public function listContents($directory = '', $recursive = false)
     {
-        $dirObjects = $this->listDirObjects($directory, true);
-        $contents = $dirObjects["objects"];
-
-        $result = array_map([$this, 'normalizeResponse'], $contents);
-        $result = array_filter($result, function ($value) {
-            return $value['path'] !== false;
-        });
-
-        return Util::emulateDirectories($result);
+        return $this->listDirObjects($directory, $recursive);
     }
 
     /**
@@ -165,15 +157,15 @@ class WsOssAdapter extends AbstractAdapter
 
     public function getMimetype($path)
     {
-        if( $object = $this->getMetadata($path))
+        if ($object = $this->getMetadata($path))
             $object['mimetype'] = $object['content-type'];
         return $object;
     }
 
     public function getTimestamp($path)
     {
-        if( $object = $this->getMetadata($path))
-            $object['timestamp'] = strtotime( $object['last-modified'] );
+        if ($object = $this->getMetadata($path))
+            $object['timestamp'] = strtotime($object['last-modified']);
         return $object;
     }
 
@@ -195,10 +187,10 @@ class WsOssAdapter extends AbstractAdapter
         $object = $this->applyPathPrefix($path);
         $options = $this->getOptions($this->options, $config);
 
-        if (! isset($options[WsClient::OSS_LENGTH])) {
+        if (!isset($options[WsClient::OSS_LENGTH])) {
             $options[WsClient::OSS_LENGTH] = Util::contentSize($contents);
         }
-        if (! isset($options[WsClient::OSS_CONTENT_TYPE])) {
+        if (!isset($options[WsClient::OSS_CONTENT_TYPE])) {
             $options[WsClient::OSS_CONTENT_TYPE] = Util::guessMimeType($path, $contents);
         }
         try {
@@ -241,9 +233,9 @@ class WsOssAdapter extends AbstractAdapter
 
     public function rename($path, $newpath)
     {
-        dump(__FUNCTION__ );
-        dump(__METHOD__  );
-        if (! $this->copy($path, $newpath)){
+        dump(__FUNCTION__);
+        dump(__METHOD__);
+        if (!$this->copy($path, $newpath)) {
             return false;
         }
         return $this->delete($path);
@@ -251,8 +243,8 @@ class WsOssAdapter extends AbstractAdapter
 
     public function copy($path, $newpath)
     {
-        dump(__FUNCTION__ );
-        dump(__METHOD__  );
+        dump(__FUNCTION__);
+        dump(__METHOD__);
         return true;
     }
 
@@ -266,20 +258,20 @@ class WsOssAdapter extends AbstractAdapter
     {
         $object = $this->applyPathPrefix($path);
 
-        try{
+        try {
             $this->client->deleteObject($object);
-        }catch (WsException $e) {
+        } catch (WsException $e) {
             $this->logErr(__FUNCTION__, $e);
             return false;
         }
 
-        return ! $this->has($path);
+        return !$this->has($path);
     }
 
     public function deleteDir($dirname)
     {
-        dump(__FUNCTION__ );
-        dump(__METHOD__  );
+        dump(__FUNCTION__);
+        dump(__METHOD__);
         return true;
     }
 
@@ -306,14 +298,14 @@ class WsOssAdapter extends AbstractAdapter
 
     public function setVisibility($path, $visibility)
     {
-        dump(__FUNCTION__ );
-        dump(__METHOD__  );
+        dump(__FUNCTION__);
+        dump(__METHOD__);
     }
 
     public function getUrl($path)
     {
         if (!$this->has($path)) return '';
-        return $this->endPoint. '/' . ltrim($path, '/');
+        return $this->endPoint . '/' . ltrim($path, '/');
     }
 
 
@@ -335,7 +327,7 @@ class WsOssAdapter extends AbstractAdapter
     /**
      * Get options for a OSS call. done
      *
-     * @param array  $options
+     * @param array $options
      *
      * @return array OSS options
      */
@@ -362,7 +354,7 @@ class WsOssAdapter extends AbstractAdapter
         $options = [];
 
         foreach (static::$metaOptions as $option) {
-            if (! $config->has($option)) {
+            if (!$config->has($option)) {
                 continue;
             }
             $options[static::$metaMap[$option]] = $config->get($option);
@@ -384,10 +376,11 @@ class WsOssAdapter extends AbstractAdapter
 
         return $options;
     }
+
     /**
      * Normalize a result from OSS.
      *
-     * @param array  $object
+     * @param array $object
      * @param string $path
      *
      * @return array file metadata
@@ -407,16 +400,19 @@ class WsOssAdapter extends AbstractAdapter
         }
         return array_merge($result, Util::map($object, static::$resultMap), ['type' => 'file']);
     }
+
     /**
      * @param $fun string function name : __FUNCTION__
      * @param $e
      */
-    protected function logErr($fun, $e){
-        if( $this->debug ){
+    protected function logErr($fun, $e)
+    {
+        if ($this->debug) {
             Log::error($fun . ": FAILED");
             Log::error($e->getMessage());
         }
     }
+
     /**
      * 列举文件夹内文件列表；可递归获取子文件夹；
      * @param string $dirname 目录
@@ -424,74 +420,25 @@ class WsOssAdapter extends AbstractAdapter
      * @return mixed
      * @throws WsException
      */
-    public function listDirObjects(string $dirname = '', bool $recursive =  false)
+    public function listDirObjects(string $dirname = '', bool $recursive = false)
     {
-        $delimiter = '/';
-        $nextMarker = '';
-        $maxkeys = 1000;
-
         //存储结果
         $result = [];
-
-        while(true){
-            $options = [
-                'delimiter' => $delimiter,
-                'prefix'    => $dirname,
-                'max-keys'  => $maxkeys,
-                'marker'    => $nextMarker,
-            ];
-
-            try {
-                $listObjectInfo = $this->client->listObjects($options);
-            } catch (WsException $e) {
-                $this->logErr(__FUNCTION__, $e);
-                // return false;
-                throw $e;
-            }
-
-            $nextMarker = $listObjectInfo->getNextMarker(); // 得到nextMarker，从上一次listObjects读到的最后一个文件的下一个文件开始继续获取文件列表
-            $objectList = $listObjectInfo->getObjectList(); // 文件列表
-            $prefixList = $listObjectInfo->getPrefixList(); // 目录列表
-
-            if (!empty($objectList)) {
-                foreach ($objectList as $objectInfo) {
-
-                    $object['Prefix']       = $dirname;
-                    $object['Key']          = $objectInfo->getKey();
-                    $object['LastModified'] = $objectInfo->getLastModified();
-                    $object['eTag']         = $objectInfo->getETag();
-                    $object['Type']         = $objectInfo->getType();
-                    $object['Size']         = $objectInfo->getSize();
-                    $object['StorageClass'] = $objectInfo->getStorageClass();
-
-                    $result['objects'][] = $object;
-                }
-            }else{
-                $result["objects"] = [];
-            }
-
-            if (!empty($prefixList)) {
-                foreach ($prefixList as $prefixInfo) {
-                    $result['prefix'][] = $prefixInfo->getPrefix();
-                }
-            }else{
-                $result['prefix'] = [];
-            }
-
-            //递归查询子目录所有文件
-            if($recursive){
-                foreach( $result['prefix'] as $pfix){
-                    $next  =  $this->listDirObjects($pfix , $recursive);
-                    $result["objects"] = array_merge($result['objects'], $next["objects"]);
+        $options = ['prefix' => $dirname];
+        try {
+            $fileList = $this->client->listObjects($options);
+            foreach ($fileList as $item) {
+                $result[] = $item;
+                if ($recursive && $item['type'] == 'dir') {
+                    $next = $this->listDirObjects($item['path'], $recursive);
+                    $result = array_merge($result, $next);
                 }
             }
-
-            //没有更多结果了
-            if ($nextMarker === '') {
-                break;
-            }
+        } catch (WsException $e) {
+            $this->logErr(__FUNCTION__, $e);
+            // return false;
+            throw $e;
         }
-
         return $result;
     }
 
